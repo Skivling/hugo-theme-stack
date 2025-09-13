@@ -4,7 +4,7 @@
 {{- $description := partialCached "data/description" . .RelPermalink -}}
 <meta name='description' {{ printf "content=%q" $description | safeHTMLAttr }}>
 {{ with .Params.Keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
-
+                                                    
 {{- $title := partial "data/title" . -}}
 <title>{{ $title }}</title>
 
@@ -13,6 +13,8 @@
 {{- partial "head/style.html" . -}}
 {{- partial "head/script.html" . -}}
 {{- partial "head/opengraph/include.html" . -}}
+ 
+<meta name="fediverse:creator" content="{{ .Site.Params.fediverse }}" />
 
 {{- range .AlternativeOutputFormats -}}
     <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
